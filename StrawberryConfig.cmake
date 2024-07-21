@@ -24,3 +24,16 @@ function(new_strawberry_library)
     add_strawberry_definitions(${LIBRARY_NAME})
     set_target_properties(${NAME} PROPERTIES CXX_STANDARD 23)
 endfunction()
+
+
+function(find_strawberry_library)
+	cmake_parse_arguments("LIBRARY" "" "NAME")
+	if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../${LIBRARY_NAME})
+		add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../${LIBRARY_NAME})
+	else()
+		FetchContent_Declare(Library
+			GIT_REPOSITORY "https://github.com/StrawberryDan/${LIBRARY_NAME}.git"
+			GIT_TAG "main")
+		FetchContent_MakeAvailable(Library)
+	endif()
+endfunction()
