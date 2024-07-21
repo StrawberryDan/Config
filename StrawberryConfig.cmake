@@ -27,13 +27,18 @@ endfunction()
 
 
 function(find_strawberry_library)
-	cmake_parse_arguments("LIBRARY" "" "NAME")
-	if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../${LIBRARY_NAME})
-		add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../${LIBRARY_NAME})
-	else ()
-		FetchContent_Declare(Library
-			GIT_REPOSITORY "https://github.com/StrawberryDan/${LIBRARY_NAME}.git"
-			GIT_TAG "main")
-		FetchContent_MakeAvailable(Library)
-	endif ()
+	cmake_parse_arguments("LIBRARY" "" "NAME" "NAMES" ${ARGN})
+	list(APPEND ALL_NAMES ${LIBRARY_NAME})
+	list(APPEND ALL_NAMES ${LIBRARY_NAMES})
+
+	foreach (NAME ${ALL_NAMES})
+		if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../${NAME})
+			add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../${NAME} ${CMAKE_CURRENT_BINARY_DIR}/Strawberry/${NAME})
+		else ()
+			FetchContent_Declare(Library
+				GIT_REPOSITORY "https://github.com/StrawberryDan/${NAME}.git"
+				GIT_TAG "main")
+			FetchContent_MakeAvailable(Library)
+		endif ()
+	endforeach ()
 endfunction()
