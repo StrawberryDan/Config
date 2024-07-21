@@ -28,6 +28,7 @@ endfunction()
 
 function(find_strawberry_library)
 	cmake_parse_arguments("LIBRARY" "" "NAME" "NAMES" ${ARGN})
+	set(ALL_NAMES "")
 	list(APPEND ALL_NAMES ${LIBRARY_NAME})
 	list(APPEND ALL_NAMES ${LIBRARY_NAMES})
 
