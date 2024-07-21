@@ -22,7 +22,7 @@ function(new_strawberry_library)
 	cmake_parse_arguments("LIBRARY" "" "NAME" "SOURCE" ${ARGN})
 	add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCE})
 	add_strawberry_definitions(${LIBRARY_NAME})
-	set_target_properties(${NAME} PROPERTIES CXX_STANDARD 23)
+	set_target_properties(${LIBRARY_NAME} PROPERTIES CXX_STANDARD 23)
 endfunction()
 
 
