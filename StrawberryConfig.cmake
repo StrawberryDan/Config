@@ -1,12 +1,12 @@
 function(add_strawberry_definitions TARGET)
-    target_compile_definitions(${TARGET} "$<$<CONFIG:Debug>:STRAWBERRY_DEBUG=1>")
-    target_compile_definitions(${TARGET} "$<$<CONFIG:RelWithDebInfo>:STRAWBERRY_RELEASE=1>")
-    target_compile_definitions(${TARGET} "$<$<CONFIG:Release>:STRAWBERRY_RELEASE=1 STRAWBERRY_FINAL=1>")
+    target_compile_definitions(${TARGET} PRIVATE "$<$<CONFIG:Debug>:STRAWBERRY_DEBUG=1>")
+    target_compile_definitions(${TARGET} PRIVATE "$<$<CONFIG:RelWithDebInfo>:STRAWBERRY_RELEASE=1>")
+    target_compile_definitions(${TARGET} PRIVATE "$<$<CONFIG:Release>:STRAWBERRY_RELEASE=1 STRAWBERRY_FINAL=1>")
 
 
-    target_compile_definitions(${TARGET} "$<$<PLATFORM_ID:Windows>:STRAWBERRY_TARGET_WINDOWS>")
-    target_compile_definitions(${TARGET} "$<$<PLATFORM_ID:Darwin>:STRAWBERRY_TARGET_MAC>")
-    target_compile_definitions(${TARGET} "$<$<PLATFORM_ID:Linux>:STRAWBERRY_TARGET_LINUX>")
+    target_compile_definitions(${TARGET} PRIVATE "$<$<PLATFORM_ID:Windows>:STRAWBERRY_TARGET_WINDOWS>")
+    target_compile_definitions(${TARGET} PRIVATE "$<$<PLATFORM_ID:Darwin>:STRAWBERRY_TARGET_MAC>")
+    target_compile_definitions(${TARGET} PRIVATE "$<$<PLATFORM_ID:Linux>:STRAWBERRY_TARGET_LINUX>")
 endfunction()
 
 
