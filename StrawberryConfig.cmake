@@ -7,6 +7,15 @@ function(add_strawberry_definitions TARGET)
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Windows>:STRAWBERRY_TARGET_WINDOWS>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Darwin>:STRAWBERRY_TARGET_MAC>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Linux>:STRAWBERRY_TARGET_LINUX>")
+
+	# Set the execution charset to UTF-8 explicitly
+	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		target_compile_options(${TARGET} PRIVATE "-fexec-charset=UTF-8")
+	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+		target_compile_options(${TARGET} PRIVATE "/execution-charset:UTF-8")
+	else ()
+		message(WARNING "Not known how to set the execution charset for this compiler. Library functions expect string literals to be UTF-8.")
+	endif()
 endfunction()
 
 
