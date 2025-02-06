@@ -52,3 +52,15 @@ function(find_strawberry_library)
 		endif ()
 	endforeach ()
 endfunction()
+
+
+function(new_strawberry_tests)
+	enable_testing()
+	cmake_parse_arguments("LIBRARY" "" "LIBRARY_NAME" "TESTS")
+
+	foreach(FILE ${LIBRARY_TESTS})
+		get_filename_component(TEST_NAME ${FILE} NAME_WE)
+		add_executable(${LIBRARY_NAME}_TEST_EXECUTABLE_${TEST_NAME} ${FILE})
+		add_test(NAME ${LIBRARY_NAME}_TEST_${TEST_NAME} COMMAND ${LIBRARY_NAME}_TEST_EXECUTABLE_${TEST_NAME})
+	endforeach()
+endfunction()
