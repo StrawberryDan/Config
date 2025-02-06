@@ -1,3 +1,6 @@
+include(CTest)
+
+
 function(add_strawberry_definitions TARGET)
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Debug>:STRAWBERRY_DEBUG=1>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:RelWithDebInfo>:STRAWBERRY_RELEASE=1>")
