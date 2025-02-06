@@ -56,7 +56,7 @@ endfunction()
 
 function(new_strawberry_tests)
 	enable_testing()
-	cmake_parse_arguments("LIBRARY" "" "LIBRARY_NAME" "TESTS")
+	cmake_parse_arguments("LIBRARY" "" "NAME" "TESTS")
 
 	foreach(FILE ${LIBRARY_TESTS})
 		get_filename_component(TEST_NAME ${FILE} NAME_WE)
