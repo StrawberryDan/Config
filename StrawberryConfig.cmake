@@ -26,7 +26,7 @@ function(new_strawberry_executable)
 	cmake_parse_arguments("EXECUTABLE" "" "NAME" "SOURCE" ${ARGN})
 	add_executable(${EXECUTABLE_NAME} ${EXECUTABLE_SOURCE})
 	add_strawberry_definitions(${EXECUTABLE_NAME})
-	set_target_properties(${EXECUTABLE_NAME} PROPERTIES CXX_STANDARD 23)
+	target_compile_features(${EXECUTABLE_NAME} PUBLIC cxx_std_23)
 endfunction()
 
 
@@ -34,7 +34,7 @@ function(new_strawberry_library)
 	cmake_parse_arguments("LIBRARY" "" "NAME" "SOURCE" ${ARGN})
 	add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCE})
 	add_strawberry_definitions(${LIBRARY_NAME})
-	set_target_properties(${LIBRARY_NAME} PROPERTIES CXX_STANDARD 23)
+	target_compile_features(${LIBRARY_NAME} PUBLIC cxx_std_23)
 endfunction()
 
 
