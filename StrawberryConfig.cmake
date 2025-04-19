@@ -14,6 +14,8 @@ function(add_strawberry_definitions TARGET)
 	# Set the execution charset to UTF-8 explicitly
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_compile_options(${TARGET} PRIVATE "-fexec-charset=UTF-8")
+	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+		target_compile_options(${TARGET} PRIVATE "-fexec-charset=UTF-8")
 	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 		target_compile_options(${TARGET} PRIVATE "/execution-charset:UTF-8")
 	else ()
