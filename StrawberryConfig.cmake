@@ -29,6 +29,7 @@ function(new_strawberry_executable)
 	add_executable(${EXECUTABLE_NAME} ${EXECUTABLE_SOURCE})
 	add_strawberry_definitions(${EXECUTABLE_NAME})
 	target_compile_features(${EXECUTABLE_NAME} PUBLIC cxx_std_23)
+	set_target_properties(${EXECUTABLE_NAME} PROPERTIES COMPILE_WARNING_AS_ERROR ON)
 endfunction()
 
 
@@ -37,6 +38,7 @@ function(new_strawberry_library)
 	add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCE})
 	add_strawberry_definitions(${LIBRARY_NAME})
 	target_compile_features(${LIBRARY_NAME} PUBLIC cxx_std_23)
+	set_target_properties(${LIBRARY_NAME} PROPERTIES COMPILE_WARNING_AS_ERROR ON)
 endfunction()
 
 
