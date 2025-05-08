@@ -3,7 +3,9 @@ include(CTest)
 
 function(add_strawberry_definitions TARGET)
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Debug>:STRAWBERRY_DEBUG=1>")
+	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Debug>:TRACY_ENABLE=1>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:RelWithDebInfo>:STRAWBERRY_RELEASE=1>")
+	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:RelWithDebInfo>:TRACY_ENABLE=1>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Release>:STRAWBERRY_RELEASE=1 STRAWBERRY_FINAL=1>")
 
 
