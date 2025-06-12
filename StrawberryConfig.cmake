@@ -12,11 +12,8 @@ function(add_strawberry_definitions TARGET)
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Linux>:STRAWBERRY_TARGET_LINUX>")
 
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_SYSTEM_NAME STREQUAL "Windows")
-		target_compile_options(${TARGET} PUBLIC "-static")
 		target_link_options(${TARGET} PUBLIC "-static")
-		target_compile_options(${TARGET} PUBLIC "-static-libgcc")
 		target_link_options(${TARGET} PUBLIC "-static-libgcc")
-		target_compile_options(${TARGET} PUBLIC "-static-libstdc++")
 		target_link_options(${TARGET} PUBLIC "-static-libstdc++")
 	endif()
 
