@@ -14,7 +14,7 @@ function(add_strawberry_definitions TARGET)
 	# Set the execution charset to UTF-8 explicitly
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_compile_options(${TARGET} PRIVATE "-fexec-charset=UTF-8")
-	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
 		target_compile_options(${TARGET} PRIVATE "-fexec-charset=UTF-8")
 	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 		target_compile_options(${TARGET} PRIVATE "/execution-charset:UTF-8")
@@ -73,3 +73,4 @@ function(new_strawberry_tests)
 		message(STATUS "Created Test ${TEST_NAME} for target ${LIBRARY_NAME} from file ${FILE}")
 	endforeach()
 endfunction()
+
