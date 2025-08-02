@@ -52,10 +52,10 @@ function(find_strawberry_library)
 		if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../${NAME})
 			add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../${NAME} ${CMAKE_CURRENT_BINARY_DIR}/Strawberry/${NAME})
 		else ()
-			FetchContent_Declare(Library
+			FetchContent_Declare(Strawberry${NAME}
 				GIT_REPOSITORY "https://github.com/StrawberryDan/${NAME}.git"
 				GIT_TAG "main")
-			FetchContent_MakeAvailable(Library)
+			FetchContent_MakeAvailable(Strawberry${NAME})
 		endif ()
 	endforeach ()
 endfunction()
@@ -73,4 +73,5 @@ function(new_strawberry_tests)
 		message(STATUS "Created Test ${TEST_NAME} for target ${LIBRARY_NAME} from file ${FILE}")
 	endforeach()
 endfunction()
+
 
