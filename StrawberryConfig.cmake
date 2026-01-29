@@ -50,8 +50,10 @@ function(find_strawberry_library)
 
 	foreach (NAME ${ALL_NAMES})
 		if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../${NAME})
+			message(STATUS "Found library ${NAME} at ${CMAKE_CURRENT_SOURCE_DIR}/../${NAME}")
 			add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../${NAME} ${CMAKE_CURRENT_BINARY_DIR}/Strawberry/${NAME})
 		else ()
+			message(STATUS "Failed to find library ${NAME} at ${CMAKE_CURRENT_SOURCE_DIR}/../${NAME}. Downloading from github at \"https://github.com/StrawberryDan/${NAME}.git\"")
 			FetchContent_Declare(Strawberry${NAME}
 				GIT_REPOSITORY "https://github.com/StrawberryDan/${NAME}.git"
 				GIT_TAG "main")
