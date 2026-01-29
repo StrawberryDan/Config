@@ -1,7 +1,12 @@
 include(CTest)
 
 
-message(STATUS "Running StrawberryConfig!")
+function (strawberry_log LEVEL MESSAGE)
+	message(${LEVEL} "[STRAWBERRY][${LEVEL}]\t${MESSAGE}")
+endfunction()
+
+
+strawberry_log(STATUS "Running StrawberryConfig!")
 
 
 function(add_strawberry_definitions TARGET)
