@@ -19,6 +19,17 @@ function(add_strawberry_definitions TARGET)
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Darwin>:STRAWBERRY_TARGET_MAC>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Linux>:STRAWBERRY_TARGET_LINUX>")
 
+	# Set macros for compiler detection
+	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		target_compile_definitions(${TARGET} PUBLIC "STRAWBERRY_COMPILER_GCC")
+	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+		target_compile_definitions(${TARGET} PUBLIC "STRAWBERRY_COMPILER_CLANG")
+	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+		target_compile_definitions(${TARGET} PUBLIC "STRAWBERRY_COMPILER_MSVC")
+	else()
+		strawberry_log(FATAL "Could not identify compiler! Could not set macros for compilation")
+	endif()
+
 	# Set the execution charset to UTF-8 explicitly
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_compile_options(${TARGET} PRIVATE "-fexec-charset=UTF-8")
