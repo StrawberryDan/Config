@@ -11,8 +11,7 @@ strawberry_log(STATUS "Running StrawberryConfig!")
 
 function(add_strawberry_definitions TARGET)
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Debug>:STRAWBERRY_DEBUG=1>")
-	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:RelWithDebInfo>:STRAWBERRY_RELEASE=1>")
-	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Release>:STRAWBERRY_RELEASE=1 STRAWBERRY_FINAL=1>")
+	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Release>:STRAWBERRY_RELEASE=1>")
 
 
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Windows>:STRAWBERRY_TARGET_WINDOWS>")
