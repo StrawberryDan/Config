@@ -95,3 +95,6 @@ function(new_strawberry_tests)
 endfunction()
 
 
+function(get_strawberry_external_build_dep_dir VAR)
+  set(VAR ${PROJECT_SOURCE_DIR}/3rdParty/ PARENT_SCOPE)
+endfunction()
