@@ -13,7 +13,6 @@ function(add_strawberry_definitions TARGET)
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Debug>:STRAWBERRY_DEBUG=1>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<CONFIG:Release>:STRAWBERRY_RELEASE=1>")
 
-
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Windows>:STRAWBERRY_TARGET_WINDOWS>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Darwin>:STRAWBERRY_TARGET_MAC>")
 	target_compile_definitions(${TARGET} PUBLIC "$<$<PLATFORM_ID:Linux>:STRAWBERRY_TARGET_LINUX>")
@@ -96,5 +95,9 @@ endfunction()
 
 
 function(get_strawberry_external_build_dep_dir VAR)
-  set(${VAR} "${PROJECT_SOURCE_DIR}/3rdParty/" PARENT_SCOPE)
+  if (DEFINED $ENV{STRAWBERRY_DEPENDENCY_CACHE})
+    set(${VAR} $ENV{STRAWBERRY_DEPENDENCY_CACHE} PARENT_SCOPE)
+  else()
+    set(${VAR} "${PROJECT_SOURCE_DIR}/3rdParty/" PARENT_SCOPE)
+  endif()
 endfunction()
