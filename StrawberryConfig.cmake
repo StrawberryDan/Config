@@ -95,7 +95,7 @@ endfunction()
 
 
 function(get_strawberry_external_build_dep_dir VAR)
-  if (DEFINED $ENV{STRAWBERRY_DEPENDENCY_CACHE})
+  if (DEFINED ENV{STRAWBERRY_DEPENDENCY_CACHE})
     strawberry_log(STATUS "Found Dependency Cache at $ENV{STRAWBERRY_DEPENDENCY_CACHE}!")
     set(${VAR} "$ENV{STRAWBERRY_DEPENDENCY_CACHE}" PARENT_SCOPE)
   else()
